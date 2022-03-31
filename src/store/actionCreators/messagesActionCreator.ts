@@ -10,8 +10,7 @@ export const fetchMessages = () => {
             const {data} = await $authHost.get('api/reader/get_all_messages', {})
             setTimeout(() => {
                 dispatch({type: MessagesActionTypes.FETCH_MESSAGES_SUCCESS, payload: data})
-            }, 1000)
-            
+            }, 500)
         } catch (e){
             dispatch({type: MessagesActionTypes.FETCH_MESSAGES_ERROR, payload: 'Ошибка при загрузке сообщений!'})
         }

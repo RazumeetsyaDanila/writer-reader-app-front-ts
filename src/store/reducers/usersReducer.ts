@@ -1,8 +1,8 @@
 import { UsersInitialState } from '../initialState';
-import { IUsersAction, UsersActionTypes, IUsersInitialState } from '../../types/usersTypes';
+import { IUsersAction, UsersActionTypes, IUsersState } from '../../types/usersTypes';
 
 
-export const usersReducer = (state = UsersInitialState, action: IUsersAction): IUsersInitialState => {
+export const usersReducer = (state = UsersInitialState, action: IUsersAction): IUsersState => {
     switch (action.type){
         case UsersActionTypes.FETCH_USERS:
             return {...state, loading: true}

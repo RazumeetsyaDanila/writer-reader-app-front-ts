@@ -1,4 +1,4 @@
-export interface IMessagesInitialState {
+export interface IMessagesState {
     messages: any[];
     loading: boolean;
     error: null | string;

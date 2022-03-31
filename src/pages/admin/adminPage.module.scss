@@ -128,3 +128,20 @@ h1 {
     text-align: center;
     margin-top: 45vh;
 }
+
+.lnk{
+    text-decoration: none;
+    align-self: center;
+    color: $formBackground;
+    font-size: 18px;
+
+    &:hover{
+        color: darkred;
+    }
+}
+
+.deleteImg{
+    &:hover{
+        cursor: pointer;
+    }
+}

@@ -2,16 +2,22 @@ import React, { useEffect } from 'react';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { useActions } from '../../hooks/useActions';
 import classes from './readerPage.module.scss'
+import { routes } from '../../consts';
+import { Link } from 'react-router-dom';
 
 const ReaderPage: React.FC = () => {
     const { messages, loading, error } = useTypedSelector(state => state.messages)
 
-    const { fetchMessages } = useActions()
+    const { fetchMessages, unsetUser } = useActions()
 
     useEffect(() => {
         fetchMessages()
     }, [])
 
+    const logOut = () => {
+        unsetUser()
+    }
+    
     if (loading) {
         return <h1 className={classes.loading}>Идет загрузка...</h1>
     }
@@ -41,6 +47,7 @@ const ReaderPage: React.FC = () => {
                     )}
                 </thead>
             </table>
+            <Link className={classes.lnk} to={routes.LOGIN_ROUTE} onClick={unsetUser}>Выйти</Link>
         </div>
     );
 };

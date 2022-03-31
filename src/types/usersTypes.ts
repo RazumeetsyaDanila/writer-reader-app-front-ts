@@ -1,4 +1,4 @@
-export interface IUsersInitialState {
+export interface IUsersState {
     users: any[];
     loading: boolean;
     error: null | string;

@@ -12,7 +12,7 @@ export const fetchUsers = (page = 1, limit = 5) => {
             })
             setTimeout(() => {
                 dispatch({type: UsersActionTypes.FETCH_USERS_SUCCESS, payload: data})
-            }, 1000)
+            }, 500)
             
         } catch (e){
             dispatch({type: UsersActionTypes.FETCH_USERS_ERROR, payload: 'Ошибка при загрузке списка пользователей!'})

@@ -1,16 +1,13 @@
 import React from 'react';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { correct_routes, REACT_APP_URL, routes } from '../consts';
+import { useTypedSelector } from '../hooks/useTypedSelector';
 import { readerRoutes, writerRoutes, adminRoutes, publicRoutes } from './../routes';
 
 const AppRouter: React.FC = () => {
 
-    //Временные данные о пользователе
-    let user = {
-        isAuth: true,
-        role: 'ADMIN'
-    }
-
+    const { isAuth, role } = useTypedSelector(state => state.user)
+    
     // костыль для проверки корректности текущего url, чтобы при некорректном перенаправлялось на страницу логина
     let checkPath: boolean = false
     let current_path: string = window.location.href.replace(REACT_APP_URL, '')
@@ -18,18 +15,15 @@ const AppRouter: React.FC = () => {
 
     return (
         <Routes>
-            {/* {user.isAuth && user.role === 'READER' && readerRoutes.map(({ path, Component }) =>
+            {isAuth && role === 'READER' && readerRoutes.map(({ path, Component }) =>
                 <Route key={path} path={path} element={<Component/>} />
-            )} */}
-            {readerRoutes.map(({ path, Component }) =>
+            )}            
+
+            {isAuth && role === 'WRITER' && writerRoutes.map(({ path, Component }) =>
                 <Route key={path} path={path} element={<Component/>} />
             )}
 
-            {user.isAuth && user.role === 'WRITER' && writerRoutes.map(({ path, Component }) =>
-                <Route key={path} path={path} element={<Component/>} />
-            )}
-
-            {user.isAuth && user.role === 'ADMIN' && adminRoutes.map(({ path, Component }) =>
+            {isAuth && role === 'ADMIN' && adminRoutes.map(({ path, Component }) =>
                 <Route key={path} path={path} element={<Component/>} />
             )}
 

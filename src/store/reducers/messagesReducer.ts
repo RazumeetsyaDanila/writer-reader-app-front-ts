@@ -1,8 +1,8 @@
 import { MessagesInitialState } from '../initialState';
-import { IMessagesInitialState, IMessagesAction, MessagesActionTypes } from './../../types/messagesTypes';
+import { IMessagesState, IMessagesAction, MessagesActionTypes } from './../../types/messagesTypes';
 
 
-export const messagesReducer = (state = MessagesInitialState, action: IMessagesAction): IMessagesInitialState => {
+export const messagesReducer = (state = MessagesInitialState, action: IMessagesAction): IMessagesState => {
     switch (action.type) {
         case MessagesActionTypes.FETCH_MESSAGES:
             return {loading: true, error: null, messages: []}
