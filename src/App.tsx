@@ -3,7 +3,6 @@ import { BrowserRouter } from 'react-router-dom';
 import "./app.scss"
 import AppRouter from './components/AppRouter';
 import { check } from './http/userAPI';
-import { setUser } from './store/actionCreators/userActionCreator';
 import { useActions } from './hooks/useActions';
 
 const App: React.FC = () => {
