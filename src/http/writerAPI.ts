@@ -1,11 +1,11 @@
 import {$authHost} from "./index";
 
-export const message_create = async (message: string, user_id: string) => {
+export const message_create = async (message: string, user_id: number) => {
     const {data} = await $authHost.post('api/writer/message_create', {message, user_id})
     return data
 }
 
-export const messages_get = async (user_id: string) => {
+export const messages_get = async (user_id: number) => {
     const {data} = await $authHost.post('api/writer/messages_get', {user_id})
     return data
 }

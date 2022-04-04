@@ -1,0 +1,33 @@
+.container{
+    display: flex;
+    align-items: center;
+
+}
+
+.input{
+    height: 30px;
+    width: 120px;
+    border-radius: 8px;
+    color: #eee;
+    background-color: #65657b;
+    border: none;
+    padding: 8px;
+    margin-right: 6px;
+    &:focus {
+        outline: none !important;
+        border: 1px solid #dc2f55;
+    }
+}
+
+.btn{
+    height: 30px;
+    padding: 0 8px 0 8px;
+    border: none;
+    color: #eee;
+    background-color: #65657b;
+    border-radius: 8px;
+    cursor: pointer;
+    &:hover{
+        background-color: #5a5a79;
+    }
+}

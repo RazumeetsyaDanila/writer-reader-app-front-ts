@@ -20,5 +20,6 @@ export const UsersInitialState: IUsersState = {
 export const UserInitialState: IUserState = {
     login: '',
     role: '',
+    id: -1,
     isAuth: false
 }

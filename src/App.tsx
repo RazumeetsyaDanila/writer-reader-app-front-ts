@@ -12,7 +12,7 @@ const App: React.FC = () => {
   useEffect(() => {
     check().then(data => {
       let anyData: any = data
-      setUser(anyData.login, anyData.role)
+      setUser(anyData.login, anyData.role, anyData.user_id)
     })
   }, [])
 

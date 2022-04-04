@@ -1,10 +1,10 @@
 import { Dispatch } from "react"
 import { UserActionTypes, IUserAction } from '../../types/userTypes';
 
-export const setUser = (login: string, role: string) => {
+export const setUser = (login: string, role: string, id: number) => {
     return (dispatch: Dispatch<IUserAction>) => {
         try{
-            dispatch({ type: UserActionTypes.SET_USER, payload: {login: login, role: role}})
+            dispatch({ type: UserActionTypes.SET_USER, payload: {login: login, role: role, id: id}})
         } catch (e){
             console.log("ba");
         }        

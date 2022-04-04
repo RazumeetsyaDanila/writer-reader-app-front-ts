@@ -1,0 +1,219 @@
+// @import "compass/css3";
+
+// More practical CSS...
+// using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
+
+$breakpoint-alpha: 480px; // adjust to your needs
+$formBackground: #171935;
+
+.rwd_table {
+    margin: 1em 0;
+    min-width: 300px; // adjust to your needs
+
+    tr {
+        border-top: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!
+    }
+
+    td {
+        display: block;
+
+        &:first-child {
+            padding-top: 0.5em;
+        }
+        &:last-child {
+            padding-bottom: 0.5em;
+        }
+
+        &:before {
+            content: attr(data-th) ": "; // who knew you could do this? The internet, that's who.
+            font-weight: bold;
+
+            // optional stuff to make it look nicer
+            width: 6.5em; // magic number :( adjust according to your own content
+            display: inline-block;
+            // end options
+
+            @media (min-width: $breakpoint-alpha) {
+                display: none;
+            }
+        }
+    }
+
+    th,
+    td {
+        text-align: center;
+
+        @media (min-width: $breakpoint-alpha) {
+            display: table-cell;
+            padding: 0.25em 0.5em;
+
+            &:first-child {
+                padding-left: 0;
+            }
+
+            &:last-child {
+                padding-right: 0;
+            }
+        }
+
+        @media (max-width: $breakpoint-alpha) {
+            text-align: left;
+        }
+    }
+}
+
+// presentational styling
+
+@import "https://fonts.googleapis.com/css?family=Montserrat:300,400,700";
+
+.container {
+    user-select: none;
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: #444;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    @media (min-width: $breakpoint-alpha) {
+        height: 100vh;
+    }
+
+    @media (max-width: $breakpoint-alpha) {
+        margin-top: 15px;
+    }
+}
+
+h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: $formBackground;
+}
+
+h2 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: $formBackground;
+}
+
+.rwd_table {
+    background: $formBackground;
+    color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 1px 1px rgba(128, 128, 128, 0.155),
+        0 2.1px 2.1px rgba(128, 128, 128, 0.195), 0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+        0 12px 12px rgba(128, 128, 128, 0.35);
+    tr {
+        border-color: lighten($formBackground, 10%);
+    }
+    th,
+    td {
+        margin: 0.5em 1em;
+        @media (min-width: $breakpoint-alpha) {
+            padding: 0.75em !important;
+        }
+    }
+    th,
+    td:before {
+        color: #e70838;
+    }
+}
+
+.loading {
+    text-align: center;
+    margin-top: 45vh;
+}
+
+.lnk {
+    text-decoration: none;
+    align-self: center;
+    color: $formBackground;
+    font-size: 18px;
+    margin-bottom: 20px;
+
+    &:hover {
+        color: darkred;
+    }
+}
+
+.message_add_btn {
+    background-color: #dc2f55;
+    border-radius: 12px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px;
+    outline: 0;
+    text-align: center;
+    margin-bottom: 18px;
+    width: 300px;
+    box-shadow: 0 0.4px 0.4px rgba(128, 128, 128, 0.109), 0 1px 1px rgba(128, 128, 128, 0.155),
+        0 2.1px 2.1px rgba(128, 128, 128, 0.195), 0 4.4px 4.4px rgba(128, 128, 128, 0.241),
+        0 12px 12px rgba(128, 128, 128, 0.35);
+}
+
+.message_add_modal_fieldset {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.message_add_modal_funcLabel {
+    color: #e70838;
+    font-size: 18px;
+    user-select: none;
+    text-align: center;
+}
+
+.message_add_btn_modal {
+    background-color: #dc2f55;
+    border-radius: 8px;
+    border: 0;
+    box-sizing: border-box;
+    color: #eee;
+    cursor: pointer;
+    font-size: 16px;
+    height: 50px;
+    margin-top: 24px;
+    outline: 0;
+    text-align: center;
+    width: 100%;
+}
+
+.message_add_modal_input {
+    width: 100%;
+    height: 80px;
+    margin-top: 24px;
+    resize: none;
+    border-radius: 8px;
+    color: #eee;
+    background-color: #65657b;
+    border: none;
+    padding: 8px;
+    &:focus {
+        outline: none !important;
+        border: 1px solid #dc2f55;
+    }
+}
+
+.deleteImg{
+    &:hover{
+        cursor: pointer;
+    }
+}
+
+.login{
+    border: 2px solid #dc2f55;
+    padding: 6px;
+    
+}

@@ -28,21 +28,18 @@ const ReaderPage: React.FC = () => {
 
     return (
         <div className={classes.container}>
-            <h1>Сообщения</h1>
+            <h1>Все сообщения</h1>
             <table className={classes.rwd_table}>
                 <thead>
                     <tr>
-                        <th>ID</th>
                         <th>Автор</th>
                         <th>Текст</th>
                         <th>Дата</th>
                     </tr>
                     {messages.map(m => <tr key={m.message_id}>
-                        <td data-th="ID">{m.message_id}</td>
                         <td data-th="Автор">{m.login}</td>
                         <td data-th="Текст">{m.message_text}</td>
                         <td data-th="Дата">{m.message_date.substring(0, 10)}</td>
-                        {/* <td><button>кнопка</button></td> */}
                     </tr>
                     )}
                 </thead>

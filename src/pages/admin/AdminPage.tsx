@@ -6,11 +6,11 @@ import { Link } from 'react-router-dom';
 import { routes } from '../../consts';
 import deleteUser from '../../img/del-btn.png'
 import { admin_registration, delete_user } from '../../http/adminAPI';
-import DeleteUserModal from '../../components/UI/modals/deleteUserModal/DeleteUserModal';
+import Modal from '../../components/UI/modals/Modal';
 
 const AdminPage: React.FC = () => {
     const { page, users, limit, loading, error } = useTypedSelector(state => state.users)
-    const currentUser = useTypedSelector(state => state.user.login)
+    const currentUserLogin = useTypedSelector(state => state.user.login)
     const { fetchUsers, unsetUser } = useActions()
 
     const [deleteUserModal, setDeleteUserModal] = useState(false)
@@ -40,10 +40,7 @@ const AdminPage: React.FC = () => {
 
     }
 
-    const test = () => {
-        setDeleteUserModal(true)
-    }
-
+    
     const click = async () => {
         try {
             await admin_registration(login, password, role)
@@ -74,18 +71,18 @@ const AdminPage: React.FC = () => {
                         <td data-th="Роль">{u.role}</td>
                         <td data-th="Удалить">
                             {
-                                u.login !== 'admin' && u.login !== 'reader' && u.login !== 'writer' && u.login !== currentUser &&
+                                u.login !== 'admin' && u.login !== 'reader' && u.login !== 'writer' && u.login !== currentUserLogin &&
                                 <img src={deleteUser} alt="" className={classes.deleteImg} onClick={userDelete.bind(this, u.login)} />
                             }</td>
                     </tr>
                     )}
                 </thead>
             </table>
-            <button className={classes.user_add_btn} onClick={test}>Добавить пользователя</button>
+            <button className={classes.user_add_btn} onClick={() => setDeleteUserModal(true)}>Добавить пользователя</button>
             <Link className={classes.lnk} to={routes.LOGIN_ROUTE} onClick={unsetUser}>Выйти</Link>
             
 
-            <DeleteUserModal visible={deleteUserModal} setVisible={setDeleteUserModal}>
+            <Modal visible={deleteUserModal} setVisible={setDeleteUserModal}>
             <div className={classes.delete_modal_fieldset}>
                 <p className={classes.delete_modal_funcLabel}>Добавление нового пользователя</p>
                 <div className={classes.delete_modal_input_container + ' ' + classes.ic1}>
@@ -109,7 +106,7 @@ const AdminPage: React.FC = () => {
                 <button className={classes.delete_modal_btn} onClick={click}>Зарегистрировать</button>
             </div>
                 
-            </DeleteUserModal>
+            </Modal>
         </div>
     );
 };

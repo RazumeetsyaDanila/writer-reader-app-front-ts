@@ -11,7 +11,7 @@ const AuthPage: React.FC = () => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const isLogin = window.location.pathname === routes.LOGIN_ROUTE
-    const {setUser} = useActions()
+    const { setUser } = useActions()
 
     const defaultRole = 'READER'
 
@@ -22,12 +22,18 @@ const AuthPage: React.FC = () => {
                 data = await loginf(login, password)
             }
             else {
-                data = await registration(login, password, defaultRole)
-            }        
-            setUser(data.login, data.role)
-            if(data.role === 'READER') navigate(routes.READER_ROUTE)
-            if(data.role === 'WRITER') navigate(routes.WRITER_ROUTE)
-            if(data.role === 'ADMIN') navigate(routes.ADMIN_ROUTE)
+                try{
+                    data = await registration(login, password, defaultRole)
+                    alert('Регистрация прошла успешно!')
+                    navigate(routes.LOGIN_ROUTE)
+                }catch (e: any){
+                    alert(e.response.data.message)
+                }
+            }
+            setUser(data.login, data.role, data.user_id)
+            if (data.role === 'READER') navigate(routes.READER_ROUTE)
+            if (data.role === 'WRITER') navigate(routes.WRITER_ROUTE)
+            if (data.role === 'ADMIN') navigate(routes.ADMIN_ROUTE)
         } catch (e: any) {
             alert(e.response.data.message)
         }
@@ -39,12 +45,12 @@ const AuthPage: React.FC = () => {
             <div className={classes.form}>
                 <div className={classes.title}>{isLogin ? 'Авторизация' : 'Регистрация'}</div>
                 <div className={classes.input_container + ' ' + classes.ic1}>
-                    <input id="login" className={classes.input} type="text" placeholder=" " value={login} onChange={e => setLogin(e.target.value)}/>
+                    <input id="login" className={classes.input} type="text" placeholder=" " value={login} onChange={e => setLogin(e.target.value)} />
                     <div className={classes.cut}></div>
                     <label htmlFor="login" className={classes.placeholder}>Логин</label>
                 </div>
                 <div className={classes.input_container + ' ' + classes.ic2}>
-                    <input id="password" className={classes.input} type="text" placeholder=" " value={password} onChange={e => setPassword(e.target.value)}/>
+                    <input id="password" className={classes.input} type="text" placeholder=" " value={password} onChange={e => setPassword(e.target.value)} />
                     <div className={classes.cut}></div>
                     <label htmlFor="password" className={classes.placeholder}>Пароль</label>
                 </div>
@@ -58,12 +64,12 @@ const AuthPage: React.FC = () => {
                     </div>
                     :
                     <div>
-                    <button className={classes.submit} onClick={auth}>Зарегистрироваться</button>
-                    <div className={classes.elseSubmit}>
-                        <p>Есть аккаунт?</p>
-                        <Link className={classes.elseLnk} to={routes.LOGIN_ROUTE}>Войти</Link>
+                        <button className={classes.submit} onClick={auth}>Зарегистрироваться</button>
+                        <div className={classes.elseSubmit}>
+                            <p>Есть аккаунт?</p>
+                            <Link className={classes.elseLnk} to={routes.LOGIN_ROUTE}>Войти</Link>
+                        </div>
                     </div>
-                </div>
                 }
             </div>
         </div>

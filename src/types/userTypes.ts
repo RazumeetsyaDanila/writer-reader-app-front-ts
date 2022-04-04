@@ -1,6 +1,7 @@
 export interface IUserState {
     login: string,
     role: string,
+    id: number,
     isAuth: boolean
 }
 
@@ -11,7 +12,7 @@ export enum UserActionTypes {
 
 interface ISetUserAction {
     type: UserActionTypes.SET_USER,
-    payload: {login: string, role: string}
+    payload: {login: string, role: string, id: number}
 }
 
 interface IUnsetUser {
