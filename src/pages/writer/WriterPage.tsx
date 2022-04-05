@@ -61,22 +61,30 @@ const WriterPage: React.FC = () => {
     return (
         <div className={classes.container}>
             {/* <h1 className={classes.login}>Пользователь - {currentUserLogin}</h1> */}
-            <h1>Мои сообщения ({currentUserLogin})</h1>
-            <table className={classes.rwd_table}>
-                <thead>
-                    <tr>
-                        <th>Текст</th>
-                        <th>Дата</th>
-                        <th>Удалить</th>
-                    </tr>
-                    {messages.map(m => <tr key={m.message_id}>
-                        <td data-th="Текст"><EditableText text={m.message_text} message_id={m.message_id} /></td>
-                        <td data-th="Дата">{m.message_date.substring(0, 10)}</td>
-                        <td ><img src={deleteMessageImg} alt="" className={classes.deleteImg} onClick={deleteMessage.bind(this, m.message_id)} /> <br /></td>
-                    </tr>
-                    )}
-                </thead>
-            </table>
+            {messages.length != 0 ?
+                <div>
+                    <h1 style={{textAlign: 'center'}}>Мои сообщения ({currentUserLogin})</h1>
+                    <table className={classes.rwd_table}>
+                        <thead>
+                            <tr>
+                                <th>Текст сообщения</th>
+                                <th>Дата</th>
+                                <th>Удалить</th>
+                            </tr>
+                            {messages.map(m => <tr key={m.message_id}>
+                                <td data-th="Текст"><EditableText text={m.message_text} message_id={m.message_id} /></td>
+                                <td data-th="Дата">{m.message_date.substring(0, 10)}</td>
+                                {/* <td ><img src={deleteMessageImg} alt="" className={classes.deleteImg} onClick={deleteMessage.bind(this, m.message_id)} /> <br /></td> */}
+                                <td ><img src={deleteMessageImg} alt="" className={classes.deleteImg} onClick={() => deleteMessage(m.message_id)} /> <br /></td>
+                            </tr>
+                            )}
+                        </thead>
+                    </table>
+                </div>
+                :
+                <h1 style={{marginBottom: '20px'}}>Нет сообщений ({currentUserLogin})</h1>
+            }
+
             <button className={classes.message_add_btn} onClick={() => setMessageModal(true)}>Добавить сообщение</button>
             <Link className={classes.lnk} to={routes.LOGIN_ROUTE} onClick={unsetUser}>Выйти</Link>
 

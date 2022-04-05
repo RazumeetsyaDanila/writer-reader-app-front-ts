@@ -81,6 +81,7 @@ $formBackground: #171935;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    font-size: 14px;
 
     @media (min-width: $breakpoint-alpha) {
         height: 100vh;
